@@ -13,6 +13,8 @@
 		DB1F2F26225A35FE00E9002C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB1F2F24225A35FE00E9002C /* Main.storyboard */; };
 		DB1F2F28225A35FE00E9002C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB1F2F27225A35FE00E9002C /* Assets.xcassets */; };
 		DB1F2F2B225A35FE00E9002C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB1F2F29225A35FE00E9002C /* LaunchScreen.storyboard */; };
+		DB98677B225E01220044BF98 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB98677A225E01220044BF98 /* Model.swift */; };
+		DB98677D225E04190044BF98 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB98677C225E04190044BF98 /* APIController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		DB1F2F27225A35FE00E9002C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB1F2F2A225A35FE00E9002C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB1F2F2C225A35FE00E9002C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB98677A225E01220044BF98 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		DB98677C225E04190044BF98 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +50,6 @@
 				2DF6F2DF0D18A45E9F04322E /* Pods-swifty-companion.debug.xcconfig */,
 				45DFDA9F23E76AC117925AEA /* Pods-swifty-companion.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -77,6 +80,8 @@
 				DB1F2F27225A35FE00E9002C /* Assets.xcassets */,
 				DB1F2F29225A35FE00E9002C /* LaunchScreen.storyboard */,
 				DB1F2F2C225A35FE00E9002C /* Info.plist */,
+				DB98677A225E01220044BF98 /* Model.swift */,
+				DB98677C225E04190044BF98 /* APIController.swift */,
 			);
 			path = "swifty-companion";
 			sourceTree = "<group>";
@@ -164,15 +169,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-swifty-companion-checkManifestLockResult.txt",
 			);
@@ -186,17 +187,13 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-swifty-companion/Pods-swifty-companion-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/OAuth2/OAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/p2.OAuth2/p2_OAuth2.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/p2_OAuth2.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -210,6 +207,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB98677D225E04190044BF98 /* APIController.swift in Sources */,
+				DB98677B225E01220044BF98 /* Model.swift in Sources */,
 				DB1F2F23225A35FE00E9002C /* ViewController.swift in Sources */,
 				DB1F2F21225A35FE00E9002C /* AppDelegate.swift in Sources */,
 			);
