@@ -19,22 +19,26 @@ class APIController {
         self.api42Delegate = delegate
     }
     
-    func performUserRequest() {
-        guard let url = URL(string: "https://api.intra.42.fr/v2/users/curquiza") else { return }
+    func getUserRequest(login: String) {
+        let escapedLogin = login.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        guard let url = URL(string: "https://api.intra.42.fr/v2/users/\(escapedLogin)") else { return }
         guard let req = oauth2?.request(forURL: url) else { return }
         let task = oauth2?.session.dataTask(with: req) { data, response, error in
             if let e = error {
-                print(e)
+                DispatchQueue.main.async {
+                    self.api42Delegate?.badRequestError(error: e)
+                }
             }
             else if let d = data {
-                print("Request succeeded")
                 do {
                     let result = try JSONDecoder().decode(User.self, from: d)
-                    print(result)
-                    self.api42Delegate?.fetchUser(userResult: result)
-                    
+                    DispatchQueue.main.async {
+                        self.api42Delegate?.fetchUser(userResult: result)
+                    }
                 } catch {
-                    print("Error caught: \(error)")
+                    DispatchQueue.main.async {
+                        self.api42Delegate?.noUserError()
+                    }
                 }
             }
         }

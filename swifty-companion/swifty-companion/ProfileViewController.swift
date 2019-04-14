@@ -11,26 +11,14 @@ import p2_OAuth2
 
 class ProfileViewController: UIViewController {
     
-    var oauth2: OAuth2ClientCredentials?
-    var api42Controller: APIController?
-
     var user: User?
     
     override func viewDidLoad() {
         print("[Profile view loaded]")
         
-        api42Controller = APIController(oauth2: self.oauth2, delegate: self)
-        api42Controller?.performUserRequest()
+        print("user = \(user)")
+        
+        title = "Profile"
     }
 }
 
-extension ProfileViewController: API42Delegate {
-    
-    func fetchUser(userResult: User) {
-        self.user = userResult
-    }
-}
-
-protocol API42Delegate {
-    func fetchUser(userResult: User)
-}

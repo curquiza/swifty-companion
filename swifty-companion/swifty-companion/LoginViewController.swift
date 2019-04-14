@@ -9,21 +9,45 @@
 import UIKit
 import p2_OAuth2
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var oauth2: OAuth2ClientCredentials?
+    var api42Controller: APIController?
     
-    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var loginTextField: UITextField! {
+        didSet {
+            loginTextField.delegate = self
+        }
+    }
     @IBOutlet weak var searchButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("[Login view loaded]")
-        
         initUI()
-//        getToken()
+        getToken()
+        api42Controller = APIController(oauth2: self.oauth2, delegate: self)
     }
     
+    /*** Move to Profile View ***/
+    @IBAction func searchButtonAction(_ sender: UIButton) {
+        print("[Search button pressed]")
+        performRequest()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("[Enter pressed]")
+        performRequest()
+        return true
+    }
+    
+    func performRequest() {
+        guard let login = loginTextField.text else { return }
+        if (login != "") {
+            print("Login text field : \(login)")
+            self.api42Controller?.getUserRequest(login: login)
+        }
+    }
     
     /*** Alert ***/
     func launchAlert(str: String) {
@@ -54,7 +78,6 @@ class LoginViewController: UIViewController {
             }
         })
 
-        // Print token in log
         guard let t = oauth2?.accessToken else { return }
         print("Token got = \(t)")
     }
@@ -83,5 +106,29 @@ class LoginViewController: UIViewController {
         guard let image = UIImage(named: "42_background") else { return }
         self.view.backgroundColor = UIColor(patternImage: image)
     }
+}
 
+
+extension LoginViewController: API42Delegate {
+    
+    func fetchUser(userResult: User) {
+        print("User got : \(userResult)")
+        let nextvView = self.storyboard?.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
+        nextvView.user = userResult
+        self.navigationController?.pushViewController(nextvView, animated: true)
+    }
+    
+    func noUserError() {
+        launchAlert(str: "This login does not exist")
+    }
+    
+    func badRequestError(error: Error) {
+        launchAlert(str: error.localizedDescription)
+    }
+}
+
+protocol API42Delegate {
+    func fetchUser(userResult: User)
+    func noUserError()
+    func badRequestError(error: Error)
 }
