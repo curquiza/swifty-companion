@@ -112,7 +112,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 extension LoginViewController: API42Delegate {
     
     func fetchUser(userResult: User) {
-        print("User got : \(userResult)")
         let nextvView = self.storyboard?.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
         nextvView.user = userResult
         self.navigationController?.pushViewController(nextvView, animated: true)

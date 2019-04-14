@@ -36,6 +36,7 @@ class APIController {
                         self.api42Delegate?.fetchUser(userResult: result)
                     }
                 } catch {
+                    print(error)
                     DispatchQueue.main.async {
                         self.api42Delegate?.noUserError()
                     }
