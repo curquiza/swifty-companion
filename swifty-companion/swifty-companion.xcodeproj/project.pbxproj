@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		76CF0F162022169621B57C86 /* Pods_swifty_companion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37481757FF9C5F4349F19835 /* Pods_swifty_companion.framework */; };
+		DB1451AC226357C000317FC2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1451AB226357C000317FC2 /* ProfileViewController.swift */; };
 		DB1F2F21225A35FE00E9002C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1F2F20225A35FE00E9002C /* AppDelegate.swift */; };
-		DB1F2F23225A35FE00E9002C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1F2F22225A35FE00E9002C /* ViewController.swift */; };
+		DB1F2F23225A35FE00E9002C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1F2F22225A35FE00E9002C /* LoginViewController.swift */; };
 		DB1F2F26225A35FE00E9002C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB1F2F24225A35FE00E9002C /* Main.storyboard */; };
 		DB1F2F28225A35FE00E9002C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB1F2F27225A35FE00E9002C /* Assets.xcassets */; };
 		DB1F2F2B225A35FE00E9002C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB1F2F29225A35FE00E9002C /* LaunchScreen.storyboard */; };
@@ -21,9 +22,10 @@
 		2DF6F2DF0D18A45E9F04322E /* Pods-swifty-companion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swifty-companion.debug.xcconfig"; path = "Target Support Files/Pods-swifty-companion/Pods-swifty-companion.debug.xcconfig"; sourceTree = "<group>"; };
 		37481757FF9C5F4349F19835 /* Pods_swifty_companion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swifty_companion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DFDA9F23E76AC117925AEA /* Pods-swifty-companion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swifty-companion.release.xcconfig"; path = "Target Support Files/Pods-swifty-companion/Pods-swifty-companion.release.xcconfig"; sourceTree = "<group>"; };
+		DB1451AB226357C000317FC2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		DB1F2F1D225A35FE00E9002C /* swifty-companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swifty-companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1F2F20225A35FE00E9002C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DB1F2F22225A35FE00E9002C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DB1F2F22225A35FE00E9002C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		DB1F2F25225A35FE00E9002C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DB1F2F27225A35FE00E9002C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB1F2F2A225A35FE00E9002C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -75,13 +77,14 @@
 			isa = PBXGroup;
 			children = (
 				DB1F2F20225A35FE00E9002C /* AppDelegate.swift */,
-				DB1F2F22225A35FE00E9002C /* ViewController.swift */,
+				DB1F2F22225A35FE00E9002C /* LoginViewController.swift */,
 				DB1F2F24225A35FE00E9002C /* Main.storyboard */,
 				DB1F2F27225A35FE00E9002C /* Assets.xcassets */,
 				DB1F2F29225A35FE00E9002C /* LaunchScreen.storyboard */,
 				DB1F2F2C225A35FE00E9002C /* Info.plist */,
 				DB98677A225E01220044BF98 /* Model.swift */,
 				DB98677C225E04190044BF98 /* APIController.swift */,
+				DB1451AB226357C000317FC2 /* ProfileViewController.swift */,
 			);
 			path = "swifty-companion";
 			sourceTree = "<group>";
@@ -209,7 +212,8 @@
 			files = (
 				DB98677D225E04190044BF98 /* APIController.swift in Sources */,
 				DB98677B225E01220044BF98 /* Model.swift in Sources */,
-				DB1F2F23225A35FE00E9002C /* ViewController.swift in Sources */,
+				DB1451AC226357C000317FC2 /* ProfileViewController.swift in Sources */,
+				DB1F2F23225A35FE00E9002C /* LoginViewController.swift in Sources */,
 				DB1F2F21225A35FE00E9002C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
