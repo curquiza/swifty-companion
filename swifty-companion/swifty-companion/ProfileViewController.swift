@@ -16,7 +16,11 @@ class ProfileViewController: UIViewController {
     let basicInfoFontSize: CGFloat = 12.0
     
     let cursus42Id = 1
+    let cursusPoleEmploiId = 10
+    let cursusPiscineCDecloisonneeId = 6
+    let cursusPiscineCCloisonneeId = 4
 
+    var currentCursusId: Int?
     var user: User?
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -42,6 +46,49 @@ class ProfileViewController: UIViewController {
         self.profileImageView.image = stringURLToUIImage(stringURL: user?.image_url)
         
         /* Basic infos */
+        fillBasicInfo()
+        
+        /* Pick cursus id */
+        if let c = user?.cursus_users.first(where: { $0.cursus_id == cursus42Id }) {
+            self.currentCursusId = c.cursus_id
+        } else if let c = user?.cursus_users.first(where: { $0.cursus_id == cursusPoleEmploiId }) {
+            self.currentCursusId = c.cursus_id
+        } else if let c = user?.cursus_users.first(where: { $0.cursus_id == cursusPiscineCCloisonneeId }) {
+            self.currentCursusId = c.cursus_id
+        } else if let c = user?.cursus_users.first(where: { $0.cursus_id == cursusPiscineCDecloisonneeId }){
+            self.currentCursusId = c.cursus_id
+        }
+        
+        /* Grade and Level */
+        cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
+        cursusStatusLabel.text = "Cursus unavailable"
+        cursusStatusLabel.textColor = invisibleFontColor
+        if let cursusId = currentCursusId {
+            if let cursus = user?.cursus_users.first(where: { $0.cursus_id == cursusId }) {
+                let g = cursus.grade ?? "Novice"
+                let l = cursus.level ?? 0.0
+                cursusStatusLabel.text = "level : \(l) - \(g)"
+                cursusStatusLabel.textColor = mainTextColor
+            }
+        }
+        
+        // recup le nom du cursus et l'afficher en dessous du cursus_status
+
+        /* Skills */
+        
+        /* Projects */
+    }
+    
+    func stringURLToUIImage(stringURL: String?) -> UIImage? {
+        guard let str = stringURL else { return nil }
+        guard let imageURL = URL(string: str) else {return nil}
+        if let imageData: NSData = NSData(contentsOf: imageURL) {
+            return UIImage(data: imageData as Data)
+        }
+        return nil
+    }
+    
+    func fillBasicInfo() {
         if let login = user?.login {
             loginLabel.text = login
             loginLabel.textColor = mainTextColor
@@ -77,32 +124,6 @@ class ProfileViewController: UIViewController {
             locationLabel.font = locationLabel.font.withSize(12)
             locationLabel.textColor = invisibleFontColor
         }
-        
-        /* Grade and Level */
-        cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
-        cursusStatusLabel.text = "Cursus 42 unavailable"
-        cursusStatusLabel.textColor = invisibleFontColor
-        if let grade = user?.cursus_users.first(where: { $0.cursus_id == cursus42Id })?.grade {
-            if let level = user?.cursus_users.first(where: { $0.cursus_id == cursus42Id })?.level {
-                cursusStatusLabel.text = "level : \(String(level)) - \(grade)"
-                cursusStatusLabel.textColor = mainTextColor
-            }
-        }
-
-        /* Skills */
-        
-        /* Projects */
     }
-    
-    func stringURLToUIImage(stringURL: String?) -> UIImage? {
-        guard let str = stringURL else { return nil }
-        guard let imageURL = URL(string: str) else {return nil}
-        if let imageData: NSData = NSData(contentsOf: imageURL) {
-            return UIImage(data: imageData as Data)
-        }
-        return nil
-    }
-    
-
 }
 

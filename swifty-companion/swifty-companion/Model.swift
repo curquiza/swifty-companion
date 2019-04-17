@@ -21,14 +21,14 @@ struct User: Codable {
     let image_url: String?
     
     let cursus_users: [CursusUser]
-    let projects_users: [ProjectUser?]
+    let projects_users: [ProjectUser]
 }
 
 struct CursusUser: Codable {
     let cursus_id: Int? // 1 pour le cursus 42, 6 pour la piscineC
     let grade: String?
     let level: Float?
-    let skills: [Skill?]
+    let skills: [Skill]
 }
 
 struct Skill: Codable {
