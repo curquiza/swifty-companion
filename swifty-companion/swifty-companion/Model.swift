@@ -20,7 +20,7 @@ struct User: Codable {
     
     let image_url: String?
     
-    let cursus_users: [CursusUser?]
+    let cursus_users: [CursusUser]
     let projects_users: [ProjectUser?]
 }
 

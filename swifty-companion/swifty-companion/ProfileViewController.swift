@@ -12,8 +12,11 @@ import p2_OAuth2
 class ProfileViewController: UIViewController {
     
     let mainTextColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    let invisibleFontColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     let basicInfoFontSize: CGFloat = 12.0
     
+    let cursus42Id = 1
+
     var user: User?
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -23,8 +26,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var correctionPointLabel: UILabel!
     @IBOutlet weak var walletLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var gradeLabel: UILabel!
-    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var cursusStatusLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -73,11 +75,20 @@ class ProfileViewController: UIViewController {
         } else {
             locationLabel.text = "location unavailable"
             locationLabel.font = locationLabel.font.withSize(12)
-            locationLabel.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+            locationLabel.textColor = invisibleFontColor
         }
         
         /* Grade and Level */
-        
+        cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
+        cursusStatusLabel.text = "Cursus 42 unavailable"
+        cursusStatusLabel.textColor = invisibleFontColor
+        if let grade = user?.cursus_users.first(where: { $0.cursus_id == cursus42Id })?.grade {
+            if let level = user?.cursus_users.first(where: { $0.cursus_id == cursus42Id })?.level {
+                cursusStatusLabel.text = "level : \(String(level)) - \(grade)"
+                cursusStatusLabel.textColor = mainTextColor
+            }
+        }
+
         /* Skills */
         
         /* Projects */

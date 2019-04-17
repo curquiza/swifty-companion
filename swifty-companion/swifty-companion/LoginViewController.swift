@@ -118,7 +118,7 @@ extension LoginViewController: API42Delegate {
     }
     
     func noUserError() {
-        launchAlert(str: "This login does not exist")
+        launchAlert(str: "Impossible to get this user")
     }
     
     func badRequestError(error: Error) {
