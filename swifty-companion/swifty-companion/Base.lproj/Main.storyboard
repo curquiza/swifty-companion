@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -170,6 +171,47 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QGV-Vt-SeL">
                                 <rect key="frame" x="-0.5" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="skillCell" rowHeight="98" id="1nS-dS-I3S" customClass="SkillsTableViewCell" customModule="swifty_companion" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1nS-dS-I3S" id="VbZ-kb-NF7">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="97.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsx-U2-G5m">
+                                                    <rect key="frame" x="25" y="21" width="325" height="56"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5xz-uX-9xa">
+                                                            <rect key="frame" x="0.0" y="0.0" width="290" height="56"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yo8-RS-7R8">
+                                                            <rect key="frame" x="290" y="0.0" width="35" height="56"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Vsx-U2-G5m" firstAttribute="top" secondItem="VbZ-kb-NF7" secondAttribute="topMargin" constant="10" id="VnU-1v-2vZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Vsx-U2-G5m" secondAttribute="trailing" constant="10" id="b3N-hg-Dmj"/>
+                                                <constraint firstItem="Vsx-U2-G5m" firstAttribute="centerY" secondItem="VbZ-kb-NF7" secondAttribute="centerY" id="dut-Lm-jMx"/>
+                                                <constraint firstItem="Vsx-U2-G5m" firstAttribute="leading" secondItem="VbZ-kb-NF7" secondAttribute="leadingMargin" constant="10" id="fuT-dG-qbD"/>
+                                                <constraint firstItem="Vsx-U2-G5m" firstAttribute="centerX" secondItem="VbZ-kb-NF7" secondAttribute="centerX" id="idm-Da-ARg"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Vsx-U2-G5m" secondAttribute="bottom" constant="10" id="jqq-NW-E9C"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="levelLabel" destination="Yo8-RS-7R8" id="0rR-jY-mWW"/>
+                                            <outlet property="nameLabel" destination="5xz-uX-9xa" id="hqh-Zi-Yiq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -181,10 +223,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b3z-jq-eo5"/>
                     </view>
+                    <connections>
+                        <outlet property="skillsTableView" destination="QGV-Vt-SeL" id="Xjg-9e-3xy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="307-Od-WfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1862" y="29"/>
+            <point key="canvasLocation" x="1861.5999999999999" y="28.335832083958024"/>
         </scene>
         <!--Projects View Controller-->
         <scene sceneID="qFH-bt-Gpv">

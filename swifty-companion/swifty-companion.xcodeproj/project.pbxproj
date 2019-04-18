@@ -18,6 +18,7 @@
 		DB98677D225E04190044BF98 /* APIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB98677C225E04190044BF98 /* APIController.swift */; };
 		DBF2D1B92268A08A0062C53C /* SkillsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF2D1B82268A08A0062C53C /* SkillsViewController.swift */; };
 		DBF2D1BD2268A8F40062C53C /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF2D1BC2268A8F40062C53C /* ProjectsViewController.swift */; };
+		DBF2D1BF2268B3E50062C53C /* SkillsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF2D1BE2268B3E50062C53C /* SkillsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		DB98677C225E04190044BF98 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		DBF2D1B82268A08A0062C53C /* SkillsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsViewController.swift; sourceTree = "<group>"; };
 		DBF2D1BC2268A8F40062C53C /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
+		DBF2D1BE2268B3E50062C53C /* SkillsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				DB1451AB226357C000317FC2 /* ProfileViewController.swift */,
 				DBF2D1B82268A08A0062C53C /* SkillsViewController.swift */,
 				DBF2D1BC2268A8F40062C53C /* ProjectsViewController.swift */,
+				DBF2D1BE2268B3E50062C53C /* SkillsTableViewCell.swift */,
 			);
 			path = "swifty-companion";
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBF2D1BD2268A8F40062C53C /* ProjectsViewController.swift in Sources */,
+				DBF2D1BF2268B3E50062C53C /* SkillsTableViewCell.swift in Sources */,
 				DB98677D225E04190044BF98 /* APIController.swift in Sources */,
 				DB98677B225E01220044BF98 /* Model.swift in Sources */,
 				DB1451AC226357C000317FC2 /* ProfileViewController.swift in Sources */,
