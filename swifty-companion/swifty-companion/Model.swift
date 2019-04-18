@@ -46,7 +46,7 @@ struct ProjectUser: Codable {
     let validated: Bool?
     let status: String?
     let project: Project?
-    let cursus_ids: [Int?]
+    let cursus_ids: [Int]
     
     private enum CodingKeys: String, CodingKey {
         case final_mark
