@@ -9,16 +9,16 @@
 import UIKit
 import p2_OAuth2
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController {
 
     var oauth2: OAuth2ClientCredentials?
     var api42Controller: APIController?
     
-    @IBOutlet weak var loginTextField: UITextField! {
-        didSet {
-            loginTextField.delegate = self
-        }
-    }
+    @IBOutlet weak var loginTextField: UITextField!
+//        didSet {
+//            loginTextField.delegate = self
+//        }
+//    }
     @IBOutlet weak var searchButton: UIButton!
 
     override func viewDidLoad() {
@@ -31,15 +31,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     /*** Move to Profile View ***/
     @IBAction func searchButtonAction(_ sender: UIButton) {
+        searchButton.isEnabled = false
         print("[Search button pressed]")
         performRequest()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("[Enter pressed]")
-        performRequest()
-        return true
-    }
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        print("[Enter pressed]")
+//        performRequest()
+//        return true
+//    }
     
     func performRequest() {
         guard let login = loginTextField.text else { return }
@@ -128,6 +129,13 @@ extension LoginViewController {
         return nil
     }
     
+    func projectIsInCursus(currentCursusId: Int?, cursusIdsTab: [Int]) -> Bool {
+        if let c = currentCursusId {
+            return cursusIdsTab.contains(c)
+        }
+        return false
+    }
+    
     func setTabBar(userResult: User) -> UITabBarController {
         let profileView = self.storyboard?.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
         let skillsView = self.storyboard?.instantiateViewController(withIdentifier: "skillsViewController") as! SkillsViewController
@@ -141,7 +149,7 @@ extension LoginViewController {
         if let cursus = userResult.cursus_users.first(where: { $0.cursus_id == currentCursusId }) {
             skillsView.skills = cursus.skills
         }
-        projectsView.user = userResult
+        projectsView.projectsUser = userResult.projects_users.filter({ projectIsInCursus(currentCursusId: currentCursusId, cursusIdsTab: $0.cursus_ids) })
         let tabBar = UITabBarController()
         tabBar.setViewControllers([profileView, skillsView, projectsView], animated: true)
         return tabBar
@@ -152,6 +160,7 @@ extension LoginViewController: API42Delegate {
     
     func fetchUser(userResult: User) {
         let tabBar = setTabBar(userResult: userResult)
+        searchButton.isEnabled = true
         self.navigationController?.pushViewController(tabBar, animated: true)
     }
     

@@ -26,7 +26,6 @@ class SkillsViewController: UIViewController, UITableViewDataSource, UITableView
         /* Background */
         guard let image = UIImage(named: "42_background") else { return }
         self.view.backgroundColor = UIColor(patternImage: image)
-
         skillsTableView.backgroundColor = nil
     }
     
@@ -41,5 +40,7 @@ class SkillsViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
