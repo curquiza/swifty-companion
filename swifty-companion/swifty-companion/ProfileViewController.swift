@@ -48,6 +48,7 @@ class ProfileViewController: UIViewController {
         cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
         cursusStatusLabel.text = "Cursus unavailable"
         cursusStatusLabel.textColor = invisibleFontColor
+        cursusStatusLabel.textAlignment = NSTextAlignment.center
         if let cursusId = currentCursusId {
             if let cursus = user?.cursus_users.first(where: { $0.cursus_id == cursusId }) {
                 let g = cursus.grade ?? "Novice"
@@ -56,6 +57,7 @@ class ProfileViewController: UIViewController {
                 cursusStatusLabel.textColor = mainTextColor
                 cursusNameLabel.text = ""
                 cursusNameLabel.textColor = invisibleFontColor
+                cursusNameLabel.textAlignment = NSTextAlignment.center
                 if let name = cursus.cursus?.name {
                     cursusNameLabel.text = "Cursus \(name)"
                     cursusNameLabel.textColor = mainTextColor
@@ -77,37 +79,43 @@ class ProfileViewController: UIViewController {
     func fillBasicInfo() {
         if let login = user?.login {
             loginLabel.text = login
+            loginLabel.textAlignment = NSTextAlignment.center
             loginLabel.textColor = mainTextColor
-            loginLabel.font = UIFont.boldSystemFont(ofSize: 25)
+//            loginLabel.font = UIFont.boldSystemFont(ofSize: 25)
         }
         if let firstName = user?.first_name {
             if let lastName = user?.last_name {
                 nameLabel.text = "\(firstName) \(lastName)"
                 nameLabel.textColor = mainTextColor
-                nameLabel.font = nameLabel.font.withSize(basicInfoFontSize)
+//                nameLabel.font = nameLabel.font.withSize(basicInfoFontSize)
+                nameLabel.textAlignment = NSTextAlignment.center
             }
         }
         if let email = user?.email {
             emailLabel.text = email
             emailLabel.textColor = mainTextColor
-            emailLabel.font = emailLabel.font.withSize(basicInfoFontSize)
+//            emailLabel.font = emailLabel.font.withSize(basicInfoFontSize)
+            emailLabel.textAlignment = NSTextAlignment.center
         }
         if let correctionPoint = user?.correction_point {
             correctionPointLabel.text = "correction points : \(correctionPoint)"
             correctionPointLabel.textColor = mainTextColor
-            correctionPointLabel.font = correctionPointLabel.font.withSize(basicInfoFontSize)
+            correctionPointLabel.textAlignment = NSTextAlignment.center
+//            correctionPointLabel.font = correctionPointLabel.font.withSize(basicInfoFontSize)
         }
         if let wallet = user?.wallet {
             walletLabel.text = "wallet : \(wallet)"
             walletLabel.textColor = mainTextColor
-            walletLabel.font = walletLabel.font.withSize(basicInfoFontSize)
+            walletLabel.textAlignment = NSTextAlignment.center
+//            walletLabel.font = walletLabel.font.withSize(basicInfoFontSize)
         }
+        locationLabel.textAlignment = NSTextAlignment.center
         if let location = user?.location {
             locationLabel.text = location
             locationLabel.textColor = mainTextColor
         } else {
             locationLabel.text = "location unavailable"
-            locationLabel.font = locationLabel.font.withSize(12)
+//            locationLabel.font = locationLabel.font.withSize(12)
             locationLabel.textColor = invisibleFontColor
         }
     }
