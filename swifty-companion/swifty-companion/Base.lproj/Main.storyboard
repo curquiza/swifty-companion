@@ -121,9 +121,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cursus_name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpl-o4-Uuc">
+                                <rect key="frame" x="137.5" y="246" width="100.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Mpl-o4-Uuc" firstAttribute="top" secondItem="3em-nA-QnA" secondAttribute="bottom" constant="10" id="DEs-9f-NzG"/>
                             <constraint firstItem="Je5-PE-UOc" firstAttribute="top" secondItem="iBL-6H-nqK" secondAttribute="top" constant="10" id="ao9-SS-ZcA"/>
                             <constraint firstItem="Nsw-g9-rzG" firstAttribute="height" secondItem="Je5-PE-UOc" secondAttribute="height" id="cNo-pL-G2D"/>
                             <constraint firstItem="Nsw-g9-rzG" firstAttribute="leading" secondItem="iBL-6H-nqK" secondAttribute="leading" constant="10" id="f83-0J-h8Y"/>
@@ -131,11 +138,13 @@
                             <constraint firstItem="3em-nA-QnA" firstAttribute="centerX" secondItem="iBL-6H-nqK" secondAttribute="centerX" id="gGc-kd-4Gk"/>
                             <constraint firstItem="3em-nA-QnA" firstAttribute="top" secondItem="Je5-PE-UOc" secondAttribute="bottom" constant="30" id="jiV-y9-YeH"/>
                             <constraint firstItem="Je5-PE-UOc" firstAttribute="leading" secondItem="Nsw-g9-rzG" secondAttribute="trailing" constant="30" id="mYb-0E-eCt"/>
+                            <constraint firstItem="Mpl-o4-Uuc" firstAttribute="centerX" secondItem="iBL-6H-nqK" secondAttribute="centerX" id="vFn-Yj-sst"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iBL-6H-nqK"/>
                     </view>
                     <connections>
                         <outlet property="correctionPointLabel" destination="BlZ-rP-yHu" id="xDq-Us-qoV"/>
+                        <outlet property="cursusNameLabel" destination="Mpl-o4-Uuc" id="lpe-iZ-qvL"/>
                         <outlet property="cursusStatusLabel" destination="3em-nA-QnA" id="QMc-dl-TBa"/>
                         <outlet property="emailLabel" destination="Lgz-aQ-JLl" id="WXG-aY-6b9"/>
                         <outlet property="locationLabel" destination="ikS-bN-F1n" id="GBm-6a-BWF"/>

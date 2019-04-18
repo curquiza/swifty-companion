@@ -28,7 +28,12 @@ struct CursusUser: Codable {
     let cursus_id: Int? // 1 pour le cursus 42, 6 pour la piscineC
     let grade: String?
     let level: Float?
+    let cursus: Cursus?
     let skills: [Skill]
+}
+
+struct Cursus: Codable {
+    let name: String?
 }
 
 struct Skill: Codable {

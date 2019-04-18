@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var walletLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var cursusStatusLabel: UILabel!
+    @IBOutlet weak var cursusNameLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -59,7 +60,7 @@ class ProfileViewController: UIViewController {
             self.currentCursusId = c.cursus_id
         }
         
-        /* Grade and Level */
+        /* Cursus infos */
         cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
         cursusStatusLabel.text = "Cursus unavailable"
         cursusStatusLabel.textColor = invisibleFontColor
@@ -69,10 +70,15 @@ class ProfileViewController: UIViewController {
                 let l = cursus.level ?? 0.0
                 cursusStatusLabel.text = "level : \(l) - \(g)"
                 cursusStatusLabel.textColor = mainTextColor
+                
+                cursusNameLabel.text = "Cursus unavailable"
+                cursusNameLabel.textColor = invisibleFontColor
+                if let name = cursus.cursus?.name {
+                    cursusNameLabel.text = "Cursus \(name)"
+                    cursusNameLabel.textColor = mainTextColor
+                }
             }
         }
-        
-        // recup le nom du cursus et l'afficher en dessous du cursus_status
 
         /* Skills */
         
