@@ -108,18 +108,55 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension LoginViewController {
+
+    func getCursusId(user: User) -> Int? {
+        let cursus42Id = 1
+        let cursusPoleEmploiId = 10
+        let cursusPiscineCDecloisonneeId = 6
+        let cursusPiscineCCloisonneeId = 4
+        
+        if let c = user.cursus_users.first(where: { $0.cursus_id == cursus42Id }) {
+            return c.cursus_id
+        } else if let c = user.cursus_users.first(where: { $0.cursus_id == cursusPoleEmploiId }) {
+            return c.cursus_id
+        } else if let c = user.cursus_users.first(where: { $0.cursus_id == cursusPiscineCCloisonneeId }) {
+            return c.cursus_id
+        } else if let c = user.cursus_users.first(where: { $0.cursus_id == cursusPiscineCDecloisonneeId }){
+            return c.cursus_id
+        }
+        return nil
+    }
+    
+    func setTabBar(userResult: User) -> UITabBarController {
+        let profileView = self.storyboard?.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
+        let skillsView = self.storyboard?.instantiateViewController(withIdentifier: "skillsViewController") as! SkillsViewController
+        let projectsView = self.storyboard?.instantiateViewController(withIdentifier: "projectsViewController") as! ProjectsViewController
+        profileView.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "person"), tag: 1)
+        skillsView.tabBarItem = UITabBarItem(title: "Skills", image: UIImage(named: "skills"), tag: 1)
+        projectsView.tabBarItem = UITabBarItem(title: "Projects", image: UIImage(named: "projects"), tag: 1)
+        let currentCursusId = getCursusId(user: userResult)
+        profileView.user = userResult
+        profileView.currentCursusId = currentCursusId
+        if let cursus = userResult.cursus_users.first(where: { $0.cursus_id == currentCursusId }) {
+            skillsView.skills = cursus.skills
+        }
+        projectsView.user = userResult
+        let tabBar = UITabBarController()
+        tabBar.setViewControllers([profileView, skillsView, projectsView], animated: true)
+        return tabBar
+    }
+}
 
 extension LoginViewController: API42Delegate {
     
     func fetchUser(userResult: User) {
-        print("User got : \(userResult)")
-        let nextvView = self.storyboard?.instantiateViewController(withIdentifier: "profileViewController") as! ProfileViewController
-        nextvView.user = userResult
-        self.navigationController?.pushViewController(nextvView, animated: true)
+        let tabBar = setTabBar(userResult: userResult)
+        self.navigationController?.pushViewController(tabBar, animated: true)
     }
     
     func noUserError() {
-        launchAlert(str: "This login does not exist")
+        launchAlert(str: "Impossible to get this user")
     }
     
     func badRequestError(error: Error) {
