@@ -7,18 +7,13 @@
 //
 
 import UIKit
-import p2_OAuth2
+
 
 class ProfileViewController: UIViewController {
     
     let mainTextColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     let invisibleFontColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
     let basicInfoFontSize: CGFloat = 12.0
-    
-    let cursus42Id = 1
-    let cursusPoleEmploiId = 10
-    let cursusPiscineCDecloisonneeId = 6
-    let cursusPiscineCCloisonneeId = 4
 
     var currentCursusId: Int?
     var user: User?
@@ -32,13 +27,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var cursusStatusLabel: UILabel!
     @IBOutlet weak var cursusNameLabel: UILabel!
-    @IBOutlet weak var skillsButton: UIButton!
-    @IBOutlet weak var projectsButton: UIButton!
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         print("[Profile view loaded]")
-        title = "Profile"
         
         /* Bakcground */
         guard let image = UIImage(named: "42_background") else { return }
@@ -50,17 +43,6 @@ class ProfileViewController: UIViewController {
         
         /* Basic infos */
         fillBasicInfo()
-        
-        /* Pick cursus id */
-        if let c = user?.cursus_users.first(where: { $0.cursus_id == cursus42Id }) {
-            self.currentCursusId = c.cursus_id
-        } else if let c = user?.cursus_users.first(where: { $0.cursus_id == cursusPoleEmploiId }) {
-            self.currentCursusId = c.cursus_id
-        } else if let c = user?.cursus_users.first(where: { $0.cursus_id == cursusPiscineCCloisonneeId }) {
-            self.currentCursusId = c.cursus_id
-        } else if let c = user?.cursus_users.first(where: { $0.cursus_id == cursusPiscineCDecloisonneeId }){
-            self.currentCursusId = c.cursus_id
-        }
         
         /* Cursus infos */
         cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
@@ -80,26 +62,6 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-
-        /* Skills */
-        setButton(button: skillsButton, title: "Skills")
-        
-        /* Projects */
-        setButton(button: projectsButton, title: "Projects")
-    }
-    
-    func setButton(button: UIButton, title: String) {
-        let color = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
-        button.setTitle(title, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.backgroundColor = mainTextColor
-        button.setTitleColor(color, for: .normal)
-        button.layer.cornerRadius = 10.0
-        button.layer.borderColor = color.cgColor
-        button.layer.borderWidth = 2
-        button.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
-//        button.titleLaqbel?.textAlignment = NSTextAlignment.center
-        button.disclosureButton(baseColor: color)
 
     }
     
@@ -149,34 +111,5 @@ class ProfileViewController: UIViewController {
             locationLabel.textColor = invisibleFontColor
         }
     }
-}
-
-extension UIButton {
-    /*
-     Add right arrow disclosure indicator to the button with normal and
-     highlighted colors for the title text and the image
-     */
-    func disclosureButton(baseColor: UIColor)
-    {
-        self.setTitleColor(baseColor, for: .normal)
-//        self.setTitleColor(baseColor.withAlphaComponent(0.3), for: .highlighted)
-        
-        guard let image = UIImage(named: "arrow")?.withRenderingMode(.alwaysTemplate) else { return }
-//        guard let imageHighlight = UIImage(named: "disclosureIcon")?.alpha(0.3)?.withRenderingMode(.alwaysTemplate) else
-//        {
-//            return
-//        }
-        
-        self.imageView?.contentMode = .scaleAspectFit
-        
-        self.setImage(image, for: .normal)
-        self.tintColor = baseColor
-//        self.setImage(imageHighlight, for: .highlighted)
-        self.imageEdgeInsets = UIEdgeInsetsMake(10, self.bounds.size.width - image.size.width * 1.5, 10, 10)
-//        self.layer.borderWidth = 0.5
-//        self.layer.borderColor = UIColor.darkGray.cgColor
-//        self.contentEdgeInsets = UIEdgeInsetsMake(10,0,10,0)
-    }
-    
 }
 
