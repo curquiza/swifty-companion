@@ -127,18 +127,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUa-fX-mUJ">
+                                <rect key="frame" x="10" y="316.5" width="355" height="30"/>
+                                <state key="normal" title="skills"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnr-hQ-YGP">
+                                <rect key="frame" x="10" y="396.5" width="355" height="30"/>
+                                <state key="normal" title="projects"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hUa-fX-mUJ" firstAttribute="top" secondItem="Mpl-o4-Uuc" secondAttribute="bottom" constant="50" id="2kL-9o-y6x"/>
+                            <constraint firstItem="hUa-fX-mUJ" firstAttribute="centerX" secondItem="iBL-6H-nqK" secondAttribute="centerX" id="3nr-EF-D9E"/>
                             <constraint firstItem="Mpl-o4-Uuc" firstAttribute="top" secondItem="3em-nA-QnA" secondAttribute="bottom" constant="10" id="DEs-9f-NzG"/>
+                            <constraint firstItem="tnr-hQ-YGP" firstAttribute="centerX" secondItem="iBL-6H-nqK" secondAttribute="centerX" id="H7P-Ma-vU9"/>
                             <constraint firstItem="Je5-PE-UOc" firstAttribute="top" secondItem="iBL-6H-nqK" secondAttribute="top" constant="10" id="ao9-SS-ZcA"/>
                             <constraint firstItem="Nsw-g9-rzG" firstAttribute="height" secondItem="Je5-PE-UOc" secondAttribute="height" id="cNo-pL-G2D"/>
                             <constraint firstItem="Nsw-g9-rzG" firstAttribute="leading" secondItem="iBL-6H-nqK" secondAttribute="leading" constant="10" id="f83-0J-h8Y"/>
+                            <constraint firstItem="tnr-hQ-YGP" firstAttribute="leading" secondItem="iBL-6H-nqK" secondAttribute="leading" constant="10" id="fBB-pN-Fvv"/>
                             <constraint firstItem="Nsw-g9-rzG" firstAttribute="top" secondItem="iBL-6H-nqK" secondAttribute="top" constant="10" id="g26-aL-cS7"/>
                             <constraint firstItem="3em-nA-QnA" firstAttribute="centerX" secondItem="iBL-6H-nqK" secondAttribute="centerX" id="gGc-kd-4Gk"/>
+                            <constraint firstItem="hUa-fX-mUJ" firstAttribute="leading" secondItem="iBL-6H-nqK" secondAttribute="leading" constant="10" id="grO-2M-LEh"/>
                             <constraint firstItem="3em-nA-QnA" firstAttribute="top" secondItem="Je5-PE-UOc" secondAttribute="bottom" constant="30" id="jiV-y9-YeH"/>
                             <constraint firstItem="Je5-PE-UOc" firstAttribute="leading" secondItem="Nsw-g9-rzG" secondAttribute="trailing" constant="30" id="mYb-0E-eCt"/>
                             <constraint firstItem="Mpl-o4-Uuc" firstAttribute="centerX" secondItem="iBL-6H-nqK" secondAttribute="centerX" id="vFn-Yj-sst"/>
+                            <constraint firstItem="tnr-hQ-YGP" firstAttribute="top" secondItem="hUa-fX-mUJ" secondAttribute="bottom" constant="50" id="wHj-f3-0Cr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iBL-6H-nqK"/>
                     </view>
@@ -151,6 +165,8 @@
                         <outlet property="loginLabel" destination="WP5-pk-6pZ" id="nAD-6k-Z6R"/>
                         <outlet property="nameLabel" destination="Z2o-kp-LVg" id="9eA-8C-cpD"/>
                         <outlet property="profileImageView" destination="PiM-pB-QkW" id="cxu-a0-b8G"/>
+                        <outlet property="projectsButton" destination="tnr-hQ-YGP" id="Mfq-I0-h41"/>
+                        <outlet property="skillsButton" destination="hUa-fX-mUJ" id="YZ2-6Q-HSU"/>
                         <outlet property="walletLabel" destination="7IR-Y7-7dh" id="ELb-Tz-avJ"/>
                     </connections>
                 </viewController>

@@ -32,6 +32,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var cursusStatusLabel: UILabel!
     @IBOutlet weak var cursusNameLabel: UILabel!
+    @IBOutlet weak var skillsButton: UIButton!
+    @IBOutlet weak var projectsButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -70,8 +72,7 @@ class ProfileViewController: UIViewController {
                 let l = cursus.level ?? 0.0
                 cursusStatusLabel.text = "level : \(l) - \(g)"
                 cursusStatusLabel.textColor = mainTextColor
-                
-                cursusNameLabel.text = "Cursus unavailable"
+                cursusNameLabel.text = ""
                 cursusNameLabel.textColor = invisibleFontColor
                 if let name = cursus.cursus?.name {
                     cursusNameLabel.text = "Cursus \(name)"
@@ -81,8 +82,25 @@ class ProfileViewController: UIViewController {
         }
 
         /* Skills */
+        setButton(button: skillsButton, title: "Skills")
         
         /* Projects */
+        setButton(button: projectsButton, title: "Projects")
+    }
+    
+    func setButton(button: UIButton, title: String) {
+        let color = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+        button.setTitle(title, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.backgroundColor = mainTextColor
+        button.setTitleColor(color, for: .normal)
+        button.layer.cornerRadius = 10.0
+        button.layer.borderColor = color.cgColor
+        button.layer.borderWidth = 2
+        button.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
+//        button.titleLaqbel?.textAlignment = NSTextAlignment.center
+        button.disclosureButton(baseColor: color)
+
     }
     
     func stringURLToUIImage(stringURL: String?) -> UIImage? {
@@ -131,5 +149,34 @@ class ProfileViewController: UIViewController {
             locationLabel.textColor = invisibleFontColor
         }
     }
+}
+
+extension UIButton {
+    /*
+     Add right arrow disclosure indicator to the button with normal and
+     highlighted colors for the title text and the image
+     */
+    func disclosureButton(baseColor: UIColor)
+    {
+        self.setTitleColor(baseColor, for: .normal)
+//        self.setTitleColor(baseColor.withAlphaComponent(0.3), for: .highlighted)
+        
+        guard let image = UIImage(named: "arrow")?.withRenderingMode(.alwaysTemplate) else { return }
+//        guard let imageHighlight = UIImage(named: "disclosureIcon")?.alpha(0.3)?.withRenderingMode(.alwaysTemplate) else
+//        {
+//            return
+//        }
+        
+        self.imageView?.contentMode = .scaleAspectFit
+        
+        self.setImage(image, for: .normal)
+        self.tintColor = baseColor
+//        self.setImage(imageHighlight, for: .highlighted)
+        self.imageEdgeInsets = UIEdgeInsetsMake(10, self.bounds.size.width - image.size.width * 1.5, 10, 10)
+//        self.layer.borderWidth = 0.5
+//        self.layer.borderColor = UIColor.darkGray.cgColor
+//        self.contentEdgeInsets = UIEdgeInsetsMake(10,0,10,0)
+    }
+    
 }
 
