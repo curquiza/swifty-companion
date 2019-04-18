@@ -32,11 +32,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("[Profile view loaded]")
-        
-        /* Bakcground */
+
+        /* Background */
         guard let image = UIImage(named: "42_background") else { return }
         self.view.backgroundColor = UIColor(patternImage: image)
-        
+
         /* Photo */
         profileImageView.contentMode = .scaleAspectFit
         self.profileImageView.image = stringURLToUIImage(stringURL: user?.image_url)
