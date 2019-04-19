@@ -24,8 +24,9 @@ class SkillsViewController: UIViewController, UITableViewDataSource, UITableView
         print("[Skills view loaded]")
 
         /* Background */
-        guard let image = UIImage(named: "42_background") else { return }
-        self.view.backgroundColor = UIColor(patternImage: image)
+        if let image = UIImage(named: "42_background") {
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
         skillsTableView.backgroundColor = nil
     }
     

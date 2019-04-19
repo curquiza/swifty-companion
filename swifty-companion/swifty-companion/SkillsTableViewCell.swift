@@ -17,8 +17,10 @@ class SkillsTableViewCell: UITableViewCell {
         didSet {
             if let s = skill {
                 nameLabel.text = s.name
+                nameLabel.font = nameLabel.font.withSize(14)
                 let l = s.level ?? 0.0
                 levelLabel.text = "\(l)"
+                levelLabel.font = levelLabel.font.withSize(14)
             }
         }
     }
