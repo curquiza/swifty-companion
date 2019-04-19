@@ -12,8 +12,6 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     let mainTextColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-    let invisibleFontColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-    let basicInfoFontSize: CGFloat = 12.0
 
     var currentCursusId: Int?
     var user: User?
@@ -67,6 +65,32 @@ class ProfileViewController: UIViewController {
         return nil
     }
     
+    func locationWithDotImage(location: String, color: UIColor) {
+        locationLabel.textColor = mainTextColor
+        locationLabel.textAlignment = .center
+        
+        if let image = UIImage(named: "dot", in: Bundle.main, compatibleWith: nil) {
+            let templateImage = image.withRenderingMode(.alwaysTemplate)
+
+            let textAttachment = NSTextAttachment()
+            textAttachment.bounds = CGRect(x: 0, y: 0, width: 10, height: 10)
+            textAttachment.image = templateImage
+            let attributedStringWithImage = NSAttributedString(attachment: textAttachment);
+            
+            let stringToDisplay = "\(location) "
+
+            let fullAttributedString = NSMutableAttributedString(string:"\(stringToDisplay) ")
+            fullAttributedString.append(attributedStringWithImage)
+            fullAttributedString.addAttribute(
+                NSAttributedStringKey.foregroundColor,
+                value: color,
+                range: NSMakeRange(
+                    stringToDisplay.count, attributedStringWithImage.length))
+            
+            locationLabel.attributedText = fullAttributedString
+        }
+    }
+    
     func fillMainInfo() {
         if let login = user?.login {
             loginLabel.text = login
@@ -76,12 +100,9 @@ class ProfileViewController: UIViewController {
         }
         locationLabel.textAlignment = NSTextAlignment.center
         if let location = user?.location {
-            locationLabel.text = location
-            locationLabel.textColor = mainTextColor
+            locationWithDotImage(location: location, color: .green)
         } else {
-            locationLabel.text = "location unavailable"
-            //            locationLabel.font = locationLabel.font.withSize(12)
-            locationLabel.textColor = invisibleFontColor
+            locationWithDotImage(location: "unavailable", color: .red)
         }
     }
     
@@ -93,27 +114,23 @@ class ProfileViewController: UIViewController {
             if let lastName = user?.last_name {
                 nameLabel.text = "\(firstName) \(lastName)"
                 nameLabel.textColor = mainTextColor
-//                nameLabel.font = nameLabel.font.withSize(basicInfoFontSize)
                 nameLabel.textAlignment = NSTextAlignment.center
             }
         }
         if let email = user?.email {
             emailLabel.text = email
             emailLabel.textColor = mainTextColor
-//            emailLabel.font = emailLabel.font.withSize(basicInfoFontSize)
             emailLabel.textAlignment = NSTextAlignment.center
         }
         if let correctionPoint = user?.correction_point {
             correctionPointLabel.text = "correction points : \(correctionPoint)"
             correctionPointLabel.textColor = mainTextColor
             correctionPointLabel.textAlignment = NSTextAlignment.center
-//            correctionPointLabel.font = correctionPointLabel.font.withSize(basicInfoFontSize)
         }
         if let wallet = user?.wallet {
             walletLabel.text = "wallet : \(wallet)"
             walletLabel.textColor = mainTextColor
             walletLabel.textAlignment = NSTextAlignment.center
-//            walletLabel.font = walletLabel.font.withSize(basicInfoFontSize)
         }
     }
     
