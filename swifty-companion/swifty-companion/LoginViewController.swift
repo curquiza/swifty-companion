@@ -35,7 +35,6 @@ class LoginViewController: UIViewController {
     
     /*** Move to Profile View ***/
     @IBAction func searchButtonAction(_ sender: UIButton) {
-        searchButton.isEnabled = false
         print("[Search button pressed]")
         performRequest()
     }
@@ -44,6 +43,7 @@ class LoginViewController: UIViewController {
         guard let login = loginTextField.text else { return }
         if (login != "") {
             print("Login text field : \(login)")
+            searchButton.isEnabled = false
             self.api42Controller?.getUserRequest(login: login)
         }
     }
@@ -60,8 +60,8 @@ class LoginViewController: UIViewController {
     
     /*** Token ***/
     func getToken() {
-        guard let uid = ProcessInfo.processInfo.environment["42_UID"] else { return }
-        guard let secret = ProcessInfo.processInfo.environment["42_SECRET"] else { return }
+        guard let uid = ProcessInfo.processInfo.environment["42_UID"] else { tokenAlert(); return }
+        guard let secret = ProcessInfo.processInfo.environment["42_SECRET"] else { tokenAlert(); return }
         
         oauth2 = OAuth2ClientCredentials(settings: [
             "client_id": uid,
@@ -73,13 +73,18 @@ class LoginViewController: UIViewController {
             if let e = error {
                 print("Error: \(e)")
                 DispatchQueue.main.async {
-                    self.launchAlert(str: "Impossible to get 42 API Token")
+                    self.tokenAlert()
                 }
             }
         })
 
         guard let t = oauth2?.accessToken else { return }
         print("Token got = \(t)")
+    }
+    
+    func tokenAlert() {
+        self.launchAlert(str: "Impossible to get 42 API Token")
+        searchButton.isEnabled = false
     }
     
     /*** UI ***/
