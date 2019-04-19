@@ -27,6 +27,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var cursusStatusLabel: UILabel!
     @IBOutlet weak var cursusNameLabel: UILabel!
+    @IBOutlet weak var basicInfoStackView: UIStackView!
+    @IBOutlet weak var cursusInfoStackView: UIStackView!
     
     
     override func viewDidLoad() {
@@ -34,37 +36,26 @@ class ProfileViewController: UIViewController {
         print("[Profile view loaded]")
 
         /* Background */
-        guard let image = UIImage(named: "42_background") else { return }
-        self.view.backgroundColor = UIColor(patternImage: image)
+        if let image = UIImage(named: "42_background") {
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
 
         /* Photo */
         profileImageView.contentMode = .scaleAspectFit
-        self.profileImageView.image = stringURLToUIImage(stringURL: user?.image_url)
+        if let i = stringURLToUIImage(stringURL: user?.image_url) {
+            self.profileImageView.image = i
+        } else {
+            self.profileImageView.image = UIImage(named: "droide")
+        }
+        
+        /* Main infos */
+        fillMainInfo()
         
         /* Basic infos */
         fillBasicInfo()
         
         /* Cursus infos */
-        cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
-        cursusStatusLabel.text = "Cursus unavailable"
-        cursusStatusLabel.textColor = invisibleFontColor
-        cursusStatusLabel.textAlignment = NSTextAlignment.center
-        if let cursusId = currentCursusId {
-            if let cursus = user?.cursus_users.first(where: { $0.cursus_id == cursusId }) {
-                let g = cursus.grade ?? "Novice"
-                let l = cursus.level ?? 0.0
-                cursusStatusLabel.text = "level : \(l) - \(g)"
-                cursusStatusLabel.textColor = mainTextColor
-                cursusNameLabel.text = ""
-                cursusNameLabel.textColor = invisibleFontColor
-                cursusNameLabel.textAlignment = NSTextAlignment.center
-                if let name = cursus.cursus?.name {
-                    cursusNameLabel.text = "Cursus \(name)"
-                    cursusNameLabel.textColor = mainTextColor
-                }
-            }
-        }
-
+        fillCursusInfo()
     }
     
     func stringURLToUIImage(stringURL: String?) -> UIImage? {
@@ -76,13 +67,28 @@ class ProfileViewController: UIViewController {
         return nil
     }
     
-    func fillBasicInfo() {
+    func fillMainInfo() {
         if let login = user?.login {
             loginLabel.text = login
             loginLabel.textAlignment = NSTextAlignment.center
             loginLabel.textColor = mainTextColor
-//            loginLabel.font = UIFont.boldSystemFont(ofSize: 25)
+            loginLabel.font = UIFont.boldSystemFont(ofSize: 25)
         }
+        locationLabel.textAlignment = NSTextAlignment.center
+        if let location = user?.location {
+            locationLabel.text = location
+            locationLabel.textColor = mainTextColor
+        } else {
+            locationLabel.text = "location unavailable"
+            //            locationLabel.font = locationLabel.font.withSize(12)
+            locationLabel.textColor = invisibleFontColor
+        }
+    }
+    
+    func fillBasicInfo() {
+        basicInfoStackView.addBackground(color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 0.75))
+        basicInfoStackView.layoutMargins = UIEdgeInsetsMake(20, 10, 20, 10)
+        basicInfoStackView.isLayoutMarginsRelativeArrangement = true
         if let firstName = user?.first_name {
             if let lastName = user?.last_name {
                 nameLabel.text = "\(firstName) \(lastName)"
@@ -109,15 +115,41 @@ class ProfileViewController: UIViewController {
             walletLabel.textAlignment = NSTextAlignment.center
 //            walletLabel.font = walletLabel.font.withSize(basicInfoFontSize)
         }
-        locationLabel.textAlignment = NSTextAlignment.center
-        if let location = user?.location {
-            locationLabel.text = location
-            locationLabel.textColor = mainTextColor
-        } else {
-            locationLabel.text = "location unavailable"
-//            locationLabel.font = locationLabel.font.withSize(12)
-            locationLabel.textColor = invisibleFontColor
+    }
+    
+    func fillCursusInfo() {
+        cursusInfoStackView.addBackground(color: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 0.75))
+        cursusInfoStackView.layoutMargins = UIEdgeInsetsMake(20, 10, 20, 10)
+        cursusInfoStackView.isLayoutMarginsRelativeArrangement = true
+        
+        cursusStatusLabel.font = cursusStatusLabel.font.withSize(20)
+        cursusStatusLabel.text = "Cursus unavailable"
+        cursusStatusLabel.textColor = mainTextColor
+        cursusStatusLabel.textAlignment = NSTextAlignment.center
+        cursusNameLabel.isHidden = true
+        cursusNameLabel.textColor = mainTextColor
+        cursusNameLabel.textAlignment = NSTextAlignment.center
+        if let cursusId = currentCursusId {
+            if let cursus = user?.cursus_users.first(where: { $0.cursus_id == cursusId }) {
+                let g = cursus.grade ?? "Novice"
+                let l = cursus.level ?? 0.0
+                cursusStatusLabel.text = "level : \(l) - \(g)"
+                if let name = cursus.cursus?.name {
+                    cursusNameLabel.isHidden = false
+                    cursusNameLabel.text = "Cursus \(name)"
+                }
+            }
         }
+    }
+}
+
+extension UIStackView {
+    func addBackground(color: UIColor) {
+        let subView = UIView(frame: bounds)
+        subView.backgroundColor = color
+        subView.layer.cornerRadius = 5
+        subView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        insertSubview(subView, at: 0)
     }
 }
 

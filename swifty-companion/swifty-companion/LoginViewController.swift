@@ -6,6 +6,14 @@
 //  Copyright © 2019 Clementine URQUIZAR. All rights reserved.
 //
 
+// TESTS:
+// - mthomas : piscine C decloisonnée
+// - xbarthe : pole emploi
+// - 3b3-20 : anonymisé
+// - norminet
+// - supervisor
+// - thor
+
 import UIKit
 import p2_OAuth2
 
@@ -15,10 +23,6 @@ class LoginViewController: UIViewController {
     var api42Controller: APIController?
     
     @IBOutlet weak var loginTextField: UITextField!
-//        didSet {
-//            loginTextField.delegate = self
-//        }
-//    }
     @IBOutlet weak var searchButton: UIButton!
 
     override func viewDidLoad() {
@@ -36,12 +40,6 @@ class LoginViewController: UIViewController {
         performRequest()
     }
     
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        print("[Enter pressed]")
-//        performRequest()
-//        return true
-//    }
-    
     func performRequest() {
         guard let login = loginTextField.text else { return }
         if (login != "") {
@@ -57,6 +55,7 @@ class LoginViewController: UIViewController {
             NSLog("Alert : \(str)")
         }))
         self.present(alert, animated: true, completion: nil)
+        searchButton.isEnabled = true
     }
     
     /*** Token ***/
@@ -104,8 +103,9 @@ class LoginViewController: UIViewController {
         searchButton.backgroundColor = mainColor
         searchButton.contentEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10)
         
-        guard let image = UIImage(named: "42_background") else { return }
-        self.view.backgroundColor = UIColor(patternImage: image)
+        if let image = UIImage(named: "42_background") {
+            self.view.backgroundColor = UIColor(patternImage: image)
+        }
     }
 }
 

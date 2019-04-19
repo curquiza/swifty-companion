@@ -16,8 +16,10 @@ class ProjectsTableViewCell: UITableViewCell {
     var project: ProjectUser? {
         didSet {
             if let p = project {
+                nameLabel.font = nameLabel.font.withSize(14)
                 nameLabel.text = p.project?.name ?? "Unknown"
                 markLabel.text = "-"
+                markLabel.font = markLabel.font.withSize(14)
                 if let mark = p.final_mark {
                     markLabel.text = String(mark)
                 }
